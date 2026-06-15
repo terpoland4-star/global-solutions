@@ -4,7 +4,6 @@ import {
   Languages,
   Mic,
   Sparkles,
-  MessageSquare,
   Check,
   ArrowRight,
   Play,
@@ -17,9 +16,10 @@ import {
   BookOpen,
   Users,
   ShoppingCart,
-  Shield
+  Shield,
+  ExternalLink
 } from 'lucide-react'
-import { services, achievements } from './data/services'
+import { services, achievements, getIconByName } from './data/services'
 
 function encode(data: Record<string, string>) {
   return Object.entries(data)
@@ -116,24 +116,35 @@ function AppMockup() {
           className="flex-1 mx-4 h-6 rounded-md flex items-center px-3 text-xs"
           style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-muted)' }}
         >
-          dashboard.hamglobalwords.com/realisations
+          studio.hamglobalwords.com/tableau-de-bord
         </div>
       </div>
 
       <div className="flex flex-col sm:flex-row" style={{ minHeight: '360px' }}>
+        {/* Colonne gauche : réalisations clés */}
         <div className="flex-1 p-5 border-r" style={{ borderColor: 'rgba(99,102,241,0.1)' }}>
           <div className="text-xs font-semibold mb-3" style={{ color: 'var(--indigo-light)' }}>RÉALISATIONS CLÉS</div>
           <div className="space-y-3">
-            <div className="flex items-center gap-2">
+            <a
+              href="https://dictionary.hamglobalwords.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:opacity-80 transition"
+            >
               <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><BookOpen size={12} className="text-indigo-300"/></div>
               <span className="text-xs" style={{ color: 'var(--cream)' }}>Dictionnaire tadaksahak (premier)</span>
-              <span className="text-xs ml-auto text-green-400">publié</span>
-            </div>
-            <div className="flex items-center gap-2">
+              <ExternalLink size={10} className="text-muted ml-auto" />
+            </a>
+            <a
+              href="https://www.niger-laptops.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:opacity-80 transition"
+            >
               <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><ShoppingCart size={12} className="text-indigo-300"/></div>
               <span className="text-xs" style={{ color: 'var(--cream)' }}>Plateforme e‑commerce Niger Laptops</span>
-              <span className="text-xs ml-auto text-green-400">en ligne</span>
-            </div>
+              <ExternalLink size={10} className="text-muted ml-auto" />
+            </a>
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><Shield size={12} className="text-indigo-300"/></div>
               <span className="text-xs" style={{ color: 'var(--cream)' }}>Interprétation Takuba / Barkhane</span>
@@ -155,6 +166,7 @@ function AppMockup() {
           </div>
         </div>
 
+        {/* Colonne droite : stats */}
         <div className="flex-1 p-5">
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div className="rounded-lg p-2 text-center" style={{ background: 'rgba(255,255,255,0.03)' }}>
@@ -184,7 +196,7 @@ export default function App() {
 
   return (
     <div style={{ background: 'var(--navy)', minHeight: '100vh' }}>
-      {/* NAV */}
+      {/* ==================== NAVIGATION ==================== */}
       <nav className="nav-blur sticky top-0 z-50" style={{ position: 'sticky', top: 0, zIndex: 50 }}>
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -200,13 +212,17 @@ export default function App() {
             {['Services', 'Réalisations', 'Partenaires', 'Blog', 'Contact'].map(item => (
               <a key={item} href="#" className="text-sm font-medium transition-colors" style={{ color: 'var(--text-muted)' }}
                 onMouseEnter={e => (e.currentTarget.style.color = 'var(--cream)')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}>{item}</a>
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}>
+                {item}
+              </a>
             ))}
           </div>
 
           <div className="hidden md:flex items-center gap-3">
             <a href="#" className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>Espace client</a>
-            <button className="btn-primary" style={{ padding: '10px 20px', fontSize: '14px' }}>Demander un devis</button>
+            <button className="btn-primary" style={{ padding: '10px 20px', fontSize: '14px' }}>
+              Demander un devis
+            </button>
           </div>
 
           <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ color: 'var(--cream)', background: 'none', border: 'none', cursor: 'pointer' }}>
@@ -224,16 +240,20 @@ export default function App() {
         )}
       </nav>
 
-      {/* HERO */}
+      {/* ==================== SECTION HERO ==================== */}
       <section className="clip-angle-bottom relative overflow-hidden" style={{ background: 'var(--navy)', paddingTop: '100px', paddingBottom: '140px' }}>
         <div className="blob absolute" style={{ width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)', top: '-100px', right: '-100px' }} />
         <div className="blob absolute" style={{ width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)', bottom: '0px', left: '-80px' }} />
 
         <div className="max-w-6xl mx-auto px-6 relative">
-          <div className="animate-fade-up-delay-1 inline-flex items-center gap-2 mb-8">
+          <div className="animate-fade-up-delay-1 inline-flex flex-wrap items-center gap-2 mb-8">
             <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.3)', color: 'var(--indigo-light)' }}>
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#34D399', boxShadow: '0 0 6px #34D399' }} />
-              RWS Group · OIM · UNHCR · Takuba · Expertise Inde
+              Certifié RWS Group
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.3)', color: '#C4B5FD' }}>
+              <Globe size={12} />
+              Expertise Inde
             </div>
           </div>
 
@@ -254,10 +274,10 @@ export default function App() {
 
           <div className="animate-fade-up-delay-4 flex flex-wrap gap-4 items-center mb-16">
             <button className="btn-primary flex items-center gap-2">Discuter de votre projet <ArrowRight size={16} /></button>
-            <button className="btn-ghost flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.08)' }}><Play size={12} fill="currentColor" /></div>
+            <a href="https://dictionary.hamglobalwords.com" target="_blank" rel="noopener noreferrer" className="btn-ghost flex items-center gap-2" style={{ textDecoration: 'none' }}>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.08)' }}><BookOpen size={14} /></div>
               Voir le dictionnaire tadaksahak
-            </button>
+            </a>
           </div>
 
           <div className="flex items-center gap-4 mb-16 animate-fade-up-delay-4 text-sm" style={{ color: 'var(--text-muted)' }}>
@@ -275,7 +295,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SERVICES SECTION (5 cartes asymétriques) */}
+      {/* ==================== SERVICES ==================== */}
       <section className="clip-angle-top" style={{ background: 'var(--cream)', color: '#0A0F1E', paddingBottom: '100px' }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -286,29 +306,31 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map(service => (
-              <div key={service.id} className="feature-card" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '24px', padding: '28px' }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ background: 'rgba(99,102,241,0.1)', color: 'var(--indigo)' }}>
-                  {/* Ici on pourrait mapper l'icône, mais pour l'exemple on garde une générique */}
-                  <FileText size={24} />
-                </div>
-                <h3 className="text-xl font-bold mb-2" style={{ color: '#0A0F1E' }}>{service.name}</h3>
-                <p className="text-sm text-gray-600 mb-3">{service.shortDescription}</p>
-                <p className="text-sm text-gray-500">{service.description}</p>
-                {service.highlights && (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {service.highlights.map(h => (
-                      <span key={h} className="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">{h}</span>
-                    ))}
+            {services.map(service => {
+              const IconComponent = getIconByName(service.icon)
+              return (
+                <div key={service.id} className="feature-card" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '24px', padding: '28px' }}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ background: 'rgba(99,102,241,0.1)', color: 'var(--indigo)' }}>
+                    <IconComponent size={24} />
                   </div>
-                )}
-              </div>
-            ))}
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0A0F1E' }}>{service.name}</h3>
+                  <p className="text-sm text-gray-600 mb-3">{service.shortDescription}</p>
+                  <p className="text-sm text-gray-500">{service.description}</p>
+                  {service.highlights && (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {service.highlights.map(h => (
+                        <span key={h} className="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">{h}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* RÉALISATIONS CLÉS (section achievements) */}
+      {/* ==================== RÉALISATIONS CLÉS ==================== */}
       <section style={{ background: 'var(--navy-mid)', padding: '80px 0' }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -316,39 +338,51 @@ export default function App() {
             <h2 className="font-display text-3xl lg:text-4xl text-cream">Réalisations concrètes</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {achievements.map(ach => (
-              <div key={ach.id} className="bg-navy-card rounded-xl p-6 border border-indigo-500/20 text-center">
-                <div className="w-14 h-14 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4">
-                  {ach.icon === 'BookOpen' && <BookOpen className="text-indigo-300" size={28} />}
-                  {ach.icon === 'Users' && <Users className="text-indigo-300" size={28} />}
-                  {ach.icon === 'Shield' && <Shield className="text-indigo-300" size={28} />}
-                  {ach.icon === 'ShoppingCart' && <ShoppingCart className="text-indigo-300" size={28} />}
-                  {ach.icon === 'Sparkles' && <Sparkles className="text-indigo-300" size={28} />}
+            {achievements.map(ach => {
+              const IconComponent = getIconByName(ach.icon)
+              const isLink = ach.link
+              const content = (
+                <>
+                  <div className="w-14 h-14 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4">
+                    <IconComponent className="text-indigo-300" size={28} />
+                  </div>
+                  <h3 className="text-lg font-bold text-cream mb-2">{ach.title}</h3>
+                  <p className="text-sm text-muted">{ach.description}</p>
+                </>
+              )
+              return (
+                <div key={ach.id} className="bg-navy-card rounded-xl p-6 border border-indigo-500/20 text-center transition hover:scale-105">
+                  {isLink ? (
+                    <a href={isLink} target="_blank" rel="noopener noreferrer" className="block">
+                      {content}
+                      <ExternalLink size={14} className="text-indigo-400 mt-3 mx-auto" />
+                    </a>
+                  ) : (
+                    content
+                  )}
                 </div>
-                <h3 className="text-lg font-bold text-cream mb-2">{ach.title}</h3>
-                <p className="text-sm text-muted">{ach.description}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* PARTENAIRES (logos stylisés) */}
+      {/* ==================== PARTENAIRES ==================== */}
       <section style={{ background: 'var(--cream-mid)', padding: '70px 0' }}>
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-6">Ils nous font confiance</p>
-          <div className="flex flex-wrap justify-center gap-12 items-center opacity-70">
-            <span className="text-2xl font-display font-bold text-gray-500">RWS Group</span>
-            <span className="text-2xl font-display font-bold text-gray-500">OIM · IOM</span>
-            <span className="text-2xl font-display font-bold text-gray-500">UNHCR</span>
-            <span className="text-2xl font-display font-bold text-gray-500">Barkhane</span>
-            <span className="text-2xl font-display font-bold text-gray-500">Task Force Takuba</span>
-            <span className="text-2xl font-display font-bold text-gray-500">Expertise Inde</span>
+          <div className="flex flex-wrap justify-center gap-12 items-center opacity-80">
+            <a href="#" className="text-2xl font-display font-bold text-gray-500 hover:text-indigo-600 transition">RWS Group</a>
+            <a href="#" className="text-2xl font-display font-bold text-gray-500 hover:text-indigo-600 transition">OIM · IOM</a>
+            <a href="#" className="text-2xl font-display font-bold text-gray-500 hover:text-indigo-600 transition">UNHCR</a>
+            <a href="#" className="text-2xl font-display font-bold text-gray-500 hover:text-indigo-600 transition">Barkhane</a>
+            <a href="#" className="text-2xl font-display font-bold text-gray-500 hover:text-indigo-600 transition">Task Force Takuba</a>
+            <a href="#" className="text-2xl font-display font-bold text-gray-500 hover:text-indigo-600 transition">Expertise Inde</a>
           </div>
         </div>
       </section>
 
-      {/* CTA FINALE */}
+      {/* ==================== CTA FINALE ==================== */}
       <section className="clip-angle-both relative overflow-hidden" style={{ background: 'var(--navy)', textAlign: 'center' }}>
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.2) 0%, transparent 65%)' }}/>
         <div className="max-w-3xl mx-auto px-6 relative">
@@ -369,7 +403,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* ==================== FOOTER ==================== */}
       <footer style={{ background: '#070B15', borderTop: '1px solid rgba(99,102,241,0.1)', paddingTop: '80px', paddingBottom: '48px' }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-16">
