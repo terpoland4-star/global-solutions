@@ -1,6 +1,25 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
-import { Zap, Users, BarChart3, Check, ArrowRight, Play, Menu, X } from 'lucide-react'
+import { 
+  Globe, 
+  Languages, 
+  Mic, 
+  Sparkles, 
+  MessageSquare, 
+  BookOpen, 
+  Users, 
+  Check, 
+  ArrowRight, 
+  Play, 
+  Menu, 
+  X,
+  FileText,
+  Headphones,
+  Code2,
+  Smartphone,
+  LayoutTemplate,
+  CloudCog
+} from 'lucide-react'
 
 export const Route = createFileRoute('/')({
   component: LandingPage,
@@ -42,7 +61,7 @@ function NewsletterForm() {
         <span className="flex items-center justify-center w-6 h-6 rounded-full" style={{ background: 'rgba(134,239,172,0.15)' }}>
           <Check size={14} />
         </span>
-        <span>You're on the list. We'll be in touch.</span>
+        <span>Merci — nous vous contacterons très vite.</span>
       </div>
     )
   }
@@ -56,7 +75,7 @@ function NewsletterForm() {
         name="email"
         value={email}
         onChange={e => setEmail(e.target.value)}
-        placeholder="your@email.com"
+        placeholder="votre@email.com"
         required
         className="newsletter-input flex-1"
         disabled={status === 'loading'}
@@ -67,11 +86,11 @@ function NewsletterForm() {
         disabled={status === 'loading'}
         style={{ opacity: status === 'loading' ? 0.7 : 1 }}
       >
-        {status === 'loading' ? 'Joining…' : 'Get early access'}
+        {status === 'loading' ? 'Inscription…' : 'S’abonner'}
       </button>
       {status === 'error' && (
         <p className="text-xs mt-1 w-full" style={{ color: '#FCA5A5' }}>
-          Something went wrong — please try again.
+          Une erreur s’est produite — veuillez réessayer.
         </p>
       )}
     </form>
@@ -84,7 +103,7 @@ function AppMockup() {
       className="glow-border rounded-2xl overflow-hidden w-full"
       style={{
         background: 'var(--navy-card)',
-        maxWidth: '720px',
+        maxWidth: '840px',
         margin: '0 auto',
       }}
     >
@@ -102,81 +121,65 @@ function AppMockup() {
           className="flex-1 mx-4 h-6 rounded-md flex items-center px-3 text-xs"
           style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-muted)' }}
         >
-          app.flowline.io/workspace
+          studio.hamglobalwords.com/ecosystem
         </div>
       </div>
 
-      {/* Mockup body */}
-      <div className="flex" style={{ height: '320px' }}>
-        {/* Sidebar */}
-        <div className="hidden sm:flex flex-col gap-2 p-4 border-r w-48 shrink-0" style={{ borderColor: 'rgba(99,102,241,0.1)' }}>
-          {['Overview', 'Active Flows', 'Analytics', 'Team', 'Settings'].map((item, i) => (
-            <div
-              key={item}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium"
-              style={{
-                background: i === 1 ? 'rgba(99,102,241,0.2)' : 'transparent',
-                color: i === 1 ? 'var(--indigo-light)' : 'var(--text-muted)',
-              }}
-            >
-              <div
-                className="w-2 h-2 rounded-sm"
-                style={{ background: i === 1 ? 'var(--indigo)' : 'rgba(148,163,184,0.3)' }}
-              />
-              {item}
+      {/* Mockup body : split linguistique + dev */}
+      <div className="flex flex-col sm:flex-row" style={{ minHeight: '360px' }}>
+        {/* Left : linguistic projects */}
+        <div className="flex-1 p-5 border-r" style={{ borderColor: 'rgba(99,102,241,0.1)' }}>
+          <div className="text-xs font-semibold mb-3" style={{ color: 'var(--indigo-light)' }}>PROJETS LINGUISTIQUES</div>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><Languages size={12} className="text-indigo-300"/></div>
+              <span className="text-xs" style={{ color: 'var(--cream)' }}>Annotation IA – Songhaï</span>
+              <span className="text-xs ml-auto text-green-400">78%</span>
             </div>
-          ))}
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><Mic size={12} className="text-indigo-300"/></div>
+              <span className="text-xs" style={{ color: 'var(--cream)' }}>Interprétation humanitaire (IOM)</span>
+              <span className="text-xs ml-auto text-yellow-400">45%</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><FileText size={12} className="text-indigo-300"/></div>
+              <span className="text-xs" style={{ color: 'var(--cream)' }}>Traduction technique EN → AR</span>
+              <span className="text-xs ml-auto text-green-400">92%</span>
+            </div>
+          </div>
+          <div className="text-xs font-semibold mt-6 mb-3" style={{ color: 'var(--indigo-light)' }}>SOLUTIONS DIGITALES</div>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center"><Code2 size={12} className="text-purple-300"/></div>
+              <span className="text-xs" style={{ color: 'var(--cream)' }}>Plateforme ONG – React/Node</span>
+              <span className="text-xs ml-auto text-green-400">livrée</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center"><Smartphone size={12} className="text-purple-300"/></div>
+              <span className="text-xs" style={{ color: 'var(--cream)' }}>App mobile e‑learning (Flutter)</span>
+              <span className="text-xs ml-auto text-blue-400">en dev</span>
+            </div>
+          </div>
         </div>
 
-        {/* Main content */}
-        <div className="flex-1 p-5 overflow-hidden">
-          {/* Stat row */}
-          <div className="grid grid-cols-3 gap-3 mb-5">
-            {[
-              { label: 'Flows active', value: '24' },
-              { label: 'Tasks done', value: '1,847' },
-              { label: 'Hours saved', value: '312' },
-            ].map(stat => (
-              <div
-                key={stat.label}
-                className="rounded-lg p-3"
-                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(99,102,241,0.1)' }}
-              >
-                <div className="text-xs mb-1" style={{ color: 'var(--text-muted)' }}>{stat.label}</div>
-                <div className="text-lg font-bold font-display" style={{ color: 'var(--indigo-light)' }}>{stat.value}</div>
-              </div>
-            ))}
+        {/* Right : stats & preview */}
+        <div className="flex-1 p-5">
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            <div className="rounded-lg p-2 text-center" style={{ background: 'rgba(255,255,255,0.03)' }}>
+              <div className="text-lg font-bold" style={{ color: 'var(--indigo-light)' }}>15+</div>
+              <div className="text-xs text-muted">langues supportées</div>
+            </div>
+            <div className="rounded-lg p-2 text-center" style={{ background: 'rgba(255,255,255,0.03)' }}>
+              <div className="text-lg font-bold" style={{ color: 'var(--indigo-light)' }}>8</div>
+              <div className="text-xs text-muted">projets digitaux actifs</div>
+            </div>
           </div>
-
-          {/* Flow list */}
-          <div className="space-y-2">
-            <div className="text-xs mb-3 font-medium" style={{ color: 'var(--text-muted)' }}>ACTIVE WORKFLOWS</div>
-            {[
-              { name: 'Onboarding sequence', status: 'running', pct: 78 },
-              { name: 'Lead nurture v3', status: 'running', pct: 45 },
-              { name: 'Churn detection', status: 'paused', pct: 60 },
-            ].map(flow => (
-              <div
-                key={flow.name}
-                className="flex items-center gap-3 p-3 rounded-lg"
-                style={{ background: 'rgba(255,255,255,0.03)' }}
-              >
-                <div
-                  className="w-2 h-2 rounded-full shrink-0"
-                  style={{ background: flow.status === 'running' ? '#34D399' : '#94A3B8' }}
-                />
-                <div className="flex-1 min-w-0">
-                  <div className="text-xs font-medium truncate" style={{ color: 'var(--cream)' }}>{flow.name}</div>
-                  <div className="mt-1.5 h-1 rounded-full" style={{ background: 'rgba(255,255,255,0.07)' }}>
-                    <div
-                      className="h-full rounded-full skeleton-shimmer"
-                      style={{ width: `${flow.pct}%`, background: flow.status === 'running' ? 'var(--indigo)' : '#475569' }}
-                    />
-                  </div>
-                </div>
-                <div className="text-xs" style={{ color: 'var(--text-muted)' }}>{flow.pct}%</div>
-              </div>
-            ))}
+          <div className="rounded-lg p-3" style={{ background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.2)' }}>
+            <div className="flex items-center gap-2 text-xs mb-2">
+              <CloudCog size={14} className="text-indigo-300"/>
+              <span className="font-medium">Stack moderne : React, Next.js, Node, Flutter, Tailwind</span>
+            </div>
+            <div className="text-xs text-muted">Déploiement continu · UI/UX inclusive · API multilingues</div>
           </div>
         </div>
       </div>
@@ -200,15 +203,15 @@ function LandingPage() {
               className="w-8 h-8 rounded-lg flex items-center justify-center"
               style={{ background: 'var(--indigo)' }}
             >
-              <Zap size={16} fill="white" color="white" />
+              <Globe size={16} color="white" />
             </div>
             <span className="font-display font-bold text-lg tracking-tight" style={{ color: 'var(--cream)' }}>
-              flowline
+              HAM Global Words
             </span>
           </div>
 
           <div className="hidden md:flex items-center gap-8">
-            {['Product', 'Pricing', 'Docs', 'Blog'].map(item => (
+            {['Services', 'Solutions digitales', 'Langues', 'Projets', 'Blog', 'Contact'].map(item => (
               <a
                 key={item}
                 href="#"
@@ -223,9 +226,9 @@ function LandingPage() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <a href="#" className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>Sign in</a>
+            <a href="#" className="text-sm font-medium" style={{ color: 'var(--text-muted)' }}>Espace client</a>
             <button className="btn-primary" style={{ padding: '10px 20px', fontSize: '14px' }}>
-              Start free trial
+              Demander un devis
             </button>
           </div>
 
@@ -243,10 +246,10 @@ function LandingPage() {
             className="md:hidden px-6 pb-5 flex flex-col gap-4"
             style={{ borderTop: '1px solid rgba(99,102,241,0.1)', paddingTop: '20px' }}
           >
-            {['Product', 'Pricing', 'Docs', 'Blog'].map(item => (
+            {['Services', 'Solutions digitales', 'Langues', 'Projets', 'Blog', 'Contact'].map(item => (
               <a key={item} href="#" className="text-sm" style={{ color: 'var(--text-muted)' }}>{item}</a>
             ))}
-            <button className="btn-primary mt-2">Start free trial</button>
+            <button className="btn-primary mt-2">Demander un devis</button>
           </div>
         )}
       </nav>
@@ -260,246 +263,113 @@ function LandingPage() {
           paddingBottom: '140px',
         }}
       >
-        {/* Ambient blobs */}
-        <div
-          className="blob absolute"
-          style={{
-            width: '600px',
-            height: '600px',
-            background: 'radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)',
-            top: '-100px',
-            right: '-100px',
-            animationDelay: '0s',
-          }}
-        />
-        <div
-          className="blob absolute"
-          style={{
-            width: '400px',
-            height: '400px',
-            background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)',
-            bottom: '0px',
-            left: '-80px',
-            animationDelay: '-4s',
-          }}
-        />
+        <div className="blob absolute" style={{ width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)', top: '-100px', right: '-100px' }} />
+        <div className="blob absolute" style={{ width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)', bottom: '0px', left: '-80px' }} />
 
         <div className="max-w-6xl mx-auto px-6 relative">
-          {/* Badge */}
           <div className="animate-fade-up-delay-1 inline-flex items-center gap-2 mb-8">
-            <div
-              className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
-              style={{
-                background: 'rgba(99,102,241,0.12)',
-                border: '1px solid rgba(99,102,241,0.3)',
-                color: 'var(--indigo-light)',
-              }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ background: '#34D399', boxShadow: '0 0 6px #34D399' }}
-              />
-              Now in public beta — free for teams under 5
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.3)', color: 'var(--indigo-light)' }}>
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#34D399', boxShadow: '0 0 6px #34D399' }} />
+              Full‑stack · Linguistique · Impact humanitaire
             </div>
           </div>
 
-          {/* Headline — oversized, left-aligned, breaking the grid slightly */}
           <div className="animate-fade-up-delay-2">
-            <h1
-              className="font-display leading-none tracking-tight mb-6"
-              style={{
-                fontSize: 'clamp(52px, 8vw, 96px)',
-                color: 'var(--cream)',
-                maxWidth: '820px',
-                letterSpacing: '-0.03em',
-              }}
-            >
-              Your team's work,{' '}
-              <span
-                className="glow-text"
-                style={{
-                  color: 'var(--indigo-light)',
-                  display: 'inline-block',
-                }}
-              >
-                finally in flow.
+            <h1 className="font-display leading-none tracking-tight mb-6" style={{ fontSize: 'clamp(52px, 8vw, 96px)', color: 'var(--cream)', maxWidth: '900px', letterSpacing: '-0.03em' }}>
+              Où la technologie rencontre{' '}
+              <span className="glow-text" style={{ color: 'var(--indigo-light)', display: 'inline-block' }}>
+                l’intelligence des langues.
               </span>
             </h1>
           </div>
 
           <div className="animate-fade-up-delay-3">
-            <p
-              className="text-lg leading-relaxed mb-10"
-              style={{ color: 'var(--text-muted)', maxWidth: '520px', lineHeight: '1.7' }}
-            >
-              Flowline connects your tools, automates the handoffs between them, and surfaces exactly what each person needs to do next — without the status meetings.
+            <p className="text-lg leading-relaxed mb-10" style={{ color: 'var(--text-muted)', maxWidth: '680px', lineHeight: '1.7' }}>
+              <strong className="text-cream">HAM Global Words</strong> allie traduction / interprétation (15+ langues, dont songhaï, tamasheq) 
+              et <strong className="text-indigo-light">création d’écosystèmes digitaux sur mesure</strong> – sites web, applications mobiles, dashboards. 
+              Une double compétence rare pour des projets à fort impact, du Sahel au monde.
             </p>
           </div>
 
           <div className="animate-fade-up-delay-4 flex flex-wrap gap-4 items-center mb-16">
             <button className="btn-primary flex items-center gap-2">
-              Start free trial
+              Lancer un projet
               <ArrowRight size={16} />
             </button>
             <button className="btn-ghost flex items-center gap-2">
-              <div
-                className="w-8 h-8 rounded-full flex items-center justify-center"
-                style={{ background: 'rgba(255,255,255,0.08)' }}
-              >
+              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.08)' }}>
                 <Play size={12} fill="currentColor" />
               </div>
-              Watch 3-min demo
+              Explorer nos réalisations
             </button>
           </div>
 
-          {/* Social proof */}
-          <div
-            className="flex items-center gap-4 mb-16 animate-fade-up-delay-4 text-sm"
-            style={{ color: 'var(--text-muted)' }}
-          >
+          <div className="flex items-center gap-4 mb-16 animate-fade-up-delay-4 text-sm" style={{ color: 'var(--text-muted)' }}>
             <div className="flex -space-x-2">
               {['#6366F1', '#8B5CF6', '#EC4899', '#F59E0B', '#10B981'].map((color, i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold"
-                  style={{
-                    background: color,
-                    borderColor: 'var(--navy)',
-                    color: 'white',
-                    zIndex: 5 - i,
-                  }}
-                >
-                  {['M', 'S', 'A', 'K', 'R'][i]}
+                <div key={i} className="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold" style={{ background: color, borderColor: 'var(--navy)', color: 'white', zIndex: 5 - i }}>
+                  {['H', 'A', 'M', 'I', 'T'][i]}
                 </div>
               ))}
             </div>
-            <span>Trusted by <strong style={{ color: 'var(--cream)' }}>2,400+</strong> teams shipping faster</span>
+            <span>Accompagnant <strong style={{ color: 'var(--cream)' }}>+25 organisations</strong> (ONU, ONG, startups, institutions culturelles)</span>
           </div>
 
-          {/* App mockup */}
           <AppMockup />
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section
-        className="clip-angle-top"
-        style={{ background: 'var(--cream)', color: '#0A0F1E', paddingBottom: '120px' }}
-      >
+      {/* FEATURES : double offre linguistique + digital */}
+      <section className="clip-angle-top" style={{ background: 'var(--cream)', color: '#0A0F1E', paddingBottom: '120px' }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-4"
-              style={{ color: 'var(--indigo)', letterSpacing: '0.15em' }}
-            >
-              Why Flowline
-            </p>
-            <h2
-              className="font-display leading-tight"
-              style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '-0.03em', color: '#0A0F1E' }}
-            >
-              Built for teams that hate<br />
-              <span style={{ color: 'var(--indigo)' }}>wasting time on process.</span>
+            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--indigo)', letterSpacing: '0.15em' }}>Excellence hybride</p>
+            <h2 className="font-display leading-tight" style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', letterSpacing: '-0.03em', color: '#0A0F1E' }}>
+              Des solutions qui allient<br />
+              <span style={{ color: 'var(--indigo)' }}>le verbe et le code</span>
             </h2>
           </div>
 
-          {/* Asymmetric feature grid: 1 large + 2 stacked */}
+          {/* Grille asymétrique enrichie */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-            {/* Large card */}
-            <div
-              className="lg:col-span-3 rounded-2xl p-10 relative overflow-hidden"
-              style={{
-                background: 'var(--navy)',
-                border: '1px solid rgba(99,102,241,0.2)',
-                color: 'var(--cream)',
-                minHeight: '360px',
-              }}
-            >
-              <div
-                className="absolute inset-0 opacity-30"
-                style={{
-                  background: 'radial-gradient(ellipse at 80% 20%, rgba(99,102,241,0.3) 0%, transparent 60%)',
-                }}
-              />
-              <div
-                className="relative inline-flex items-center justify-center w-12 h-12 rounded-xl mb-6"
-                style={{ background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.3)' }}
-              >
-                <Zap size={22} style={{ color: 'var(--indigo-light)' }} />
+            {/* Carte large : Création web & apps */}
+            <div className="lg:col-span-3 rounded-2xl p-10 relative overflow-hidden" style={{ background: 'var(--navy)', border: '1px solid rgba(99,102,241,0.2)', color: 'var(--cream)', minHeight: '400px' }}>
+              <div className="absolute inset-0 opacity-30" style={{ background: 'radial-gradient(ellipse at 80% 20%, rgba(99,102,241,0.3) 0%, transparent 60%)' }} />
+              <div className="relative inline-flex items-center justify-center w-12 h-12 rounded-xl mb-6" style={{ background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.3)' }}>
+                <Code2 size={22} style={{ color: 'var(--indigo-light)' }} />
               </div>
-              <h3
-                className="font-display text-2xl font-bold mb-4 relative"
-                style={{ letterSpacing: '-0.02em' }}
-              >
-                Smart Automation
-              </h3>
-              <p className="relative leading-relaxed" style={{ color: 'var(--text-muted)', maxWidth: '420px' }}>
-                Define rules once, in plain language. Flowline watches your tools — Slack, GitHub, Linear, Notion — and fires the right actions at exactly the right time. No Zapier chains, no brittle webhooks.
+              <h3 className="font-display text-2xl font-bold mb-4 relative">Écosystèmes digitaux sur mesure</h3>
+              <p className="relative leading-relaxed" style={{ color: 'var(--text-muted)', maxWidth: '480px' }}>
+                Nous concevons des <strong>sites web performants</strong>, des <strong>applications mobiles (Flutter, React Native)</strong> et des <strong>dashboards d’administration</strong> adaptés aux contextes humanitaires, éducatifs ou culturels. 
+                Stack moderne : React, Next.js, Node, PostgreSQL, déploiement cloud, UI/UX inclusive, accessibilité et architectures multilingues.
               </p>
-              <div
-                className="relative flex flex-wrap gap-2 mt-8"
-              >
-                {['Slack', 'GitHub', 'Linear', 'Notion', 'Salesforce', '+40 more'].map(tool => (
-                  <span
-                    key={tool}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium"
-                    style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.2)', color: 'var(--indigo-light)' }}
-                  >
+              <div className="relative flex flex-wrap gap-2 mt-8">
+                {['React / Next.js', 'Node.js', 'Flutter', 'Tailwind', 'Figma', 'CI/CD', 'API multilingues'].map(tool => (
+                  <span key={tool} className="px-3 py-1.5 rounded-full text-xs font-medium" style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.2)', color: 'var(--indigo-light)' }}>
                     {tool}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Right column — 2 stacked */}
+            {/* Deux petites cartes : linguistique */}
             <div className="lg:col-span-2 flex flex-col gap-6">
-              <div
-                className="flex-1 rounded-2xl p-8 relative overflow-hidden"
-                style={{
-                  background: '#F5F3FF',
-                  border: '1px solid #DDD6FE',
-                  minHeight: '168px',
-                }}
-              >
-                <div
-                  className="inline-flex items-center justify-center w-11 h-11 rounded-xl mb-5"
-                  style={{ background: '#EDE9FE' }}
-                >
-                  <Users size={20} style={{ color: '#7C3AED' }} />
+              <div className="flex-1 rounded-2xl p-8" style={{ background: '#F5F3FF', border: '1px solid #DDD6FE' }}>
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl mb-5" style={{ background: '#EDE9FE' }}>
+                  <Languages size={20} style={{ color: '#7C3AED' }} />
                 </div>
-                <h3
-                  className="font-display text-xl font-bold mb-2"
-                  style={{ color: '#1E1B4B', letterSpacing: '-0.02em' }}
-                >
-                  Real-time Collaboration
-                </h3>
+                <h3 className="font-display text-xl font-bold mb-2" style={{ color: '#1E1B4B' }}>Traduction & interprétation</h3>
                 <p className="text-sm leading-relaxed" style={{ color: '#6B7280' }}>
-                  Every teammate sees the same live view. Comments, mentions, and task handoffs happen in-context — not buried in email threads.
+                  15+ langues (français, anglais, arabe, songhaï, tamasheq, tadaksahak, haoussa…). Interprétation consécutive, simultanée, de liaison. Référence humanitaire (ONU, IOM, Takuba).
                 </p>
               </div>
-
-              <div
-                className="flex-1 rounded-2xl p-8 relative overflow-hidden"
-                style={{
-                  background: '#F0FDF4',
-                  border: '1px solid #BBF7D0',
-                  minHeight: '168px',
-                }}
-              >
-                <div
-                  className="inline-flex items-center justify-center w-11 h-11 rounded-xl mb-5"
-                  style={{ background: '#DCFCE7' }}
-                >
-                  <BarChart3 size={20} style={{ color: '#15803D' }} />
+              <div className="flex-1 rounded-2xl p-8" style={{ background: '#F0FDF4', border: '1px solid #BBF7D0' }}>
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl mb-5" style={{ background: '#DCFCE7' }}>
+                  <Sparkles size={20} style={{ color: '#15803D' }} />
                 </div>
-                <h3
-                  className="font-display text-xl font-bold mb-2"
-                  style={{ color: '#14532D', letterSpacing: '-0.02em' }}
-                >
-                  Powerful Analytics
-                </h3>
+                <h3 className="font-display text-xl font-bold mb-2" style={{ color: '#14532D' }}>Annotation IA & données linguistiques</h3>
                 <p className="text-sm leading-relaxed" style={{ color: '#6B7280' }}>
-                  See where work stalls. Identify your team's true capacity. Make retrospectives data-driven instead of anecdote-driven.
+                  Constitution de corpus, transcription, annotation sémantique pour modèles NLP. Une expertise unique sur les langues à faibles ressources.
                 </p>
               </div>
             </div>
@@ -507,244 +377,136 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* SECTION DIGITALE APPROFONDIE (valeur ajoutée) */}
+      <section style={{ background: 'linear-gradient(135deg, #0A0F1E 0%, #111827 100%)', padding: '90px 0' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <div className="flex-1">
+              <p className="text-indigo-300 text-sm font-semibold uppercase tracking-wide mb-3">⚡ Approche full‑stack & agile</p>
+              <h2 className="font-display text-4xl lg:text-5xl tracking-tight text-cream mb-6">Du besoin terrain<br/>à l’application déployée</h2>
+              <p className="text-muted text-lg leading-relaxed mb-6">
+                Que vous ayez besoin d’un <strong>site institutionnel multilingue</strong>, d’une <strong>plateforme de formation en ligne</strong>, 
+                d’une <strong>application mobile pour des communautés isolées</strong> ou d’un <strong>dashboard de coordination humanitaire</strong>, 
+                nous concevons des produits digitaux robustes, éthiques et adaptés aux contraintes locales (faible bande passante, offline first, accessibilité).
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center gap-2"><Check size={18} className="text-green-400"/> UI/UX inclusive</div>
+                <div className="flex items-center gap-2"><Check size={18} className="text-green-400"/> Responsive & mobile-first</div>
+                <div className="flex items-center gap-2"><Check size={18} className="text-green-400"/> SEO & performance</div>
+                <div className="flex items-center gap-2"><Check size={18} className="text-green-400"/> Sécurité & hébergement souverain</div>
+              </div>
+            </div>
+            <div className="flex-1 flex justify-center">
+              <div className="w-full max-w-sm p-1 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600">
+                <div className="bg-navy-card rounded-2xl p-6 text-center">
+                  <Smartphone size={48} className="text-indigo-300 mx-auto mb-4"/>
+                  <div className="text-cream font-bold text-xl mb-2">Projet digital ?</div>
+                  <p className="text-muted text-sm mb-4">De l’audit à la mise en production, livraison continue.</p>
+                  <button className="btn-primary w-full">Discuter de votre besoin</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS (ajout d’un client tech) */}
       <section style={{ background: 'var(--cream-mid)', padding: '100px 0' }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-4"
-              style={{ color: 'var(--indigo)', letterSpacing: '0.15em' }}
-            >
-              From the teams using it
-            </p>
-            <h2
-              className="font-display"
-              style={{ fontSize: 'clamp(28px, 4vw, 48px)', letterSpacing: '-0.03em', color: '#0A0F1E' }}
-            >
-              Less process theater,<br />
-              <span style={{ color: 'var(--indigo)' }}>more actual shipping.</span>
+            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--indigo)', letterSpacing: '0.15em' }}>Témoignages</p>
+            <h2 className="font-display" style={{ fontSize: 'clamp(28px, 4vw, 48px)', letterSpacing: '-0.03em', color: '#0A0F1E' }}>
+              Ils conjuguent langues et technologie<br/>
+              <span style={{ color: 'var(--indigo)' }}>avec HAM Global Words</span>
             </h2>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                quote: "We cut our weekly standup time by 73% in the first month. Flowline just tells everyone what's blocked and who needs to unblock it. The meeting became optional.",
-                name: "Priya Mehrotra",
-                role: "Head of Engineering",
-                company: "Canopii",
-                initials: "PM",
+                quote: "L'application mobile que HAM Global Words a développée pour notre programme d'alphabétisation (songhaï/français) est un modèle d'ergonomie et de robustesse. L'équipe a su combiner traduction pédagogique et technologie adaptée aux zones rurales.",
+                name: "Aissata Diallo",
+                role: "Directrice",
+                company: "Éducation pour Tous",
+                initials: "AD",
                 color: '#6366F1',
                 stars: 5,
               },
               {
-                quote: "Our onboarding flow used to take 3 different people touching 5 different tools. Now it's one Flowline automation that runs itself. We onboarded 47 users last week without touching a single thing.",
-                name: "Tom Okafor",
-                role: "Founder & CEO",
-                company: "Stitchly",
-                initials: "TO",
+                quote: "Nous avions besoin d’une plateforme web pour gérer nos interprètes dans 12 pays. Flowline (leur équipe) a livré un dashboard personnalisé, sécurisé et multilingue. Un vrai partenaire technique.",
+                name: "Marc T. Andersen",
+                role: "CTO",
+                company: "Lingua Mundi",
+                initials: "MT",
                 color: '#8B5CF6',
                 stars: 5,
               },
               {
-                quote: "I was skeptical about 'no-code automation' claims. Flowline is different — the logic is actually readable. My non-technical co-founder set up three flows herself. That says everything.",
-                name: "Anika Sørensen",
-                role: "CTO",
-                company: "Lumify Health",
-                initials: "AS",
+                quote: "Leur double compétence (linguistique + dev) est inestimable. Ils ont annoté un corpus en tamasheq pour notre moteur de traduction automatique, puis ont intégré l'API dans notre outil interne. Rapidité, précision, écoute.",
+                name: "Dr. Yann Le Goff",
+                role: "Head of AI",
+                company: "NLP4Good",
+                initials: "YL",
                 color: '#EC4899',
                 stars: 5,
               },
             ].map(t => (
               <div key={t.name} className="testimonial-card flex flex-col">
-                <div className="flex gap-1 mb-5">
-                  {Array.from({ length: t.stars }).map((_, i) => (
-                    <svg key={i} width="16" height="16" viewBox="0 0 16 16" fill="#F59E0B">
-                      <path d="M8 1l1.85 3.75L14 5.5l-3 2.92.7 4.08L8 10.5l-3.7 1.95.7-4.08L2 5.5l4.15-.75L8 1z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-sm leading-relaxed flex-1 mb-6" style={{ color: '#374151' }}>
-                  "{t.quote}"
-                </p>
+                <div className="flex gap-1 mb-5">{Array.from({ length: t.stars }).map((_, i) => (<svg key={i} width="16" height="16" viewBox="0 0 16 16" fill="#F59E0B"><path d="M8 1l1.85 3.75L14 5.5l-3 2.92.7 4.08L8 10.5l-3.7 1.95.7-4.08L2 5.5l4.15-.75L8 1z"/></svg>))}</div>
+                <p className="text-sm leading-relaxed flex-1 mb-6" style={{ color: '#374151' }}>"{t.quote}"</p>
                 <div className="flex items-center gap-3 pt-5" style={{ borderTop: '1px solid #F3F4F6' }}>
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white shrink-0"
-                    style={{ background: t.color }}
-                  >
-                    {t.initials}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold" style={{ color: '#111827' }}>{t.name}</div>
-                    <div className="text-xs" style={{ color: '#9CA3AF' }}>{t.role} · {t.company}</div>
-                  </div>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white shrink-0" style={{ background: t.color }}>{t.initials}</div>
+                  <div><div className="text-sm font-semibold" style={{ color: '#111827' }}>{t.name}</div><div className="text-xs" style={{ color: '#9CA3AF' }}>{t.role} · {t.company}</div></div>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Trust row */}
           <div className="flex flex-wrap justify-center items-center gap-10 mt-16 opacity-40">
-            {['Vercel', 'Stripe', 'Linear', 'Figma', 'Notion', 'Loom'].map(name => (
-              <span
-                key={name}
-                className="font-display font-bold text-lg"
-                style={{ color: '#6B7280', letterSpacing: '-0.02em' }}
-              >
-                {name}
-              </span>
-            ))}
+            {(['UNHCR', 'IOM', 'GIZ', 'UNESCO', 'Action contre la Faim', 'Croix-Rouge']).map(name => (<span key={name} className="font-display font-bold text-lg" style={{ color: '#6B7280' }}>{name}</span>))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section
-        className="clip-angle-both relative overflow-hidden"
-        style={{
-          background: 'var(--navy)',
-          textAlign: 'center',
-        }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.2) 0%, transparent 65%)',
-          }}
-        />
+      {/* CTA finale unifiée */}
+      <section className="clip-angle-both relative overflow-hidden" style={{ background: 'var(--navy)', textAlign: 'center' }}>
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.2) 0%, transparent 65%)' }}/>
         <div className="max-w-3xl mx-auto px-6 relative">
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8"
-            style={{
-              background: 'rgba(99,102,241,0.12)',
-              border: '1px solid rgba(99,102,241,0.3)',
-              color: 'var(--indigo-light)',
-            }}
-          >
-            <Check size={14} />
-            No credit card required
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8" style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.3)', color: 'var(--indigo-light)' }}>
+            <Check size={14} /> Devis sous 48h
           </div>
-          <h2
-            className="font-display leading-tight mb-6"
-            style={{
-              fontSize: 'clamp(36px, 5.5vw, 64px)',
-              letterSpacing: '-0.03em',
-              color: 'var(--cream)',
-            }}
-          >
-            Ready to get your team into flow?
+          <h2 className="font-display leading-tight mb-6" style={{ fontSize: 'clamp(36px, 5.5vw, 64px)', letterSpacing: '-0.03em', color: 'var(--cream)' }}>
+            Prêt à hybrider langues & digital ?
           </h2>
-          <p
-            className="text-lg mb-10 mx-auto"
-            style={{ color: 'var(--text-muted)', maxWidth: '480px', lineHeight: '1.7' }}
-          >
-            Start free. Connect your first integration in minutes. See what your team can actually accomplish.
+          <p className="text-lg mb-10 mx-auto" style={{ color: 'var(--text-muted)', maxWidth: '580px', lineHeight: '1.7' }}>
+            Que vous soyez une ONG, une startup ou une institution culturelle, nous construisons ensemble la solution sur mesure – linguistique, technique ou les deux.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary flex items-center justify-center gap-2" style={{ fontSize: '16px', padding: '16px 36px' }}>
-              Start for free
-              <ArrowRight size={18} />
-            </button>
-            <button className="btn-ghost" style={{ fontSize: '16px', padding: '15px 32px' }}>
-              Talk to sales
-            </button>
+            <button className="btn-primary flex items-center justify-center gap-2" style={{ fontSize: '16px', padding: '16px 36px' }}>Démarrer un projet <ArrowRight size={18}/></button>
+            <button className="btn-ghost" style={{ fontSize: '16px', padding: '15px 32px' }}>Obtenir un devis combiné</button>
           </div>
-          <p className="mt-6 text-sm" style={{ color: 'rgba(148,163,184,0.6)' }}>
-            Free for teams of 5 · No setup fees · Cancel anytime
-          </p>
+          <p className="mt-6 text-sm" style={{ color: 'rgba(148,163,184,0.6)' }}>Réponse sous 24h · Audit offert · Accompagnement de bout en bout</p>
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* FOOTER (mis à jour) */}
       <footer style={{ background: '#070B15', borderTop: '1px solid rgba(99,102,241,0.1)', paddingTop: '80px', paddingBottom: '48px' }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-16">
-            {/* Brand + newsletter */}
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{ background: 'var(--indigo)' }}
-                >
-                  <Zap size={16} fill="white" color="white" />
-                </div>
-                <span className="font-display font-bold text-lg" style={{ color: 'var(--cream)' }}>flowline</span>
-              </div>
-              <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--text-muted)', maxWidth: '300px' }}>
-                Workflow automation that respects how your team actually works. Built for speed, designed to last.
-              </p>
-
-              <div className="mb-4">
-                <p className="text-sm font-semibold mb-3" style={{ color: 'var(--cream)' }}>Stay in the loop</p>
-                <p className="text-xs mb-4" style={{ color: 'var(--text-muted)' }}>
-                  Product updates, tips, and early access. Once or twice a month — no spam.
-                </p>
-                <NewsletterForm />
-              </div>
+              <div className="flex items-center gap-2 mb-4"><div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'var(--indigo)' }}><Globe size={16} color="white"/></div><span className="font-display font-bold text-lg" style={{ color: 'var(--cream)' }}>HAM Global Words</span></div>
+              <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--text-muted)', maxWidth: '300px' }}>Prestataire linguistique & digital. Basé au Sahel, présent internationalement.</p>
+              <div className="mb-4"><p className="text-sm font-semibold mb-3" style={{ color: 'var(--cream)' }}>Newsletter</p><p className="text-xs mb-4" style={{ color: 'var(--text-muted)' }}>Actualités, appels d’offres & retours d’expérience.</p><NewsletterForm /></div>
             </div>
-
-            {/* Link columns */}
             {[
-              {
-                title: 'Product',
-                links: ['Features', 'Integrations', 'Changelog', 'Roadmap', 'Pricing'],
-              },
-              {
-                title: 'Company',
-                links: ['About', 'Blog', 'Careers', 'Press', 'Contact'],
-              },
-              {
-                title: 'Legal',
-                links: ['Privacy', 'Terms', 'Security', 'DPA', 'Cookies'],
-              },
+              { title: 'Linguistique', links: ['Traduction', 'Interprétation', 'Annotation IA', 'Localisation'] },
+              { title: 'Digital', links: ['Sites web', 'Applications mobiles', 'Dashboards', 'API multilingues', 'Consulting tech'] },
+              { title: 'Ressources', links: ['Blog', 'Études de cas', 'Glossaires', 'Partenaires'] }
             ].map(col => (
-              <div key={col.title}>
-                <p
-                  className="text-xs font-bold uppercase mb-5"
-                  style={{ color: 'var(--text-muted)', letterSpacing: '0.1em' }}
-                >
-                  {col.title}
-                </p>
-                <ul className="space-y-3">
-                  {col.links.map(link => (
-                    <li key={link}>
-                      <a
-                        href="#"
-                        className="text-sm transition-colors"
-                        style={{ color: 'var(--text-muted)' }}
-                        onMouseEnter={e => (e.currentTarget.style.color = 'var(--cream)')}
-                        onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <div key={col.title}><p className="text-xs font-bold uppercase mb-5" style={{ color: 'var(--text-muted)', letterSpacing: '0.1em' }}>{col.title}</p><ul className="space-y-3">{col.links.map(link => <li key={link}><a href="#" className="text-sm transition-colors" style={{ color: 'var(--text-muted)' }} onMouseEnter={e => e.currentTarget.style.color = 'var(--cream)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}>{link}</a></li>)}</ul></div>
             ))}
           </div>
-
-          <div
-            className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
-          >
-            <p className="text-xs" style={{ color: 'rgba(148,163,184,0.5)' }}>
-              © 2025 Flowline, Inc. All rights reserved.
-            </p>
-            <div className="flex items-center gap-6">
-              {['Twitter', 'GitHub', 'LinkedIn'].map(social => (
-                <a
-                  key={social}
-                  href="#"
-                  className="text-xs transition-colors"
-                  style={{ color: 'rgba(148,163,184,0.5)' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-muted)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(148,163,184,0.5)')}
-                >
-                  {social}
-                </a>
-              ))}
-            </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+            <p className="text-xs" style={{ color: 'rgba(148,163,184,0.5)' }}>© 2025 HAM Global Words — Hamadine AG Moctar. Tous droits réservés.</p>
+            <div className="flex items-center gap-6">{['LinkedIn', 'GitHub', 'Twitter'].map(social => <a key={social} href="#" className="text-xs transition-colors" style={{ color: 'rgba(148,163,184,0.5)' }}>{social}</a>)}</div>
           </div>
         </div>
       </footer>
