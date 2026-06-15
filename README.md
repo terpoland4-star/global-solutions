@@ -1,34 +1,38 @@
-# Flowline — Landing Page
+# HAM Global Words — Solutions linguistiques & digitales
 
-A marketing landing page for **Flowline**, a B2B SaaS workflow automation product. Built with TanStack Start (React + Tailwind CSS v4), deployed on Netlify.
+Landing page pour **HAM Global Words**, un prestataire linguistique multilingue et humanitaire offrant également des services de création de sites web, applications, et solutions digitales sur mesure.  
+Construit avec **React + Vite**, **Tailwind CSS v3**, déployé sur **GitHub Pages**.
 
-## Key sections
+## Sections principales
 
-- **Hero** — Oversized headline, ambient glow blobs, an interactive app dashboard mockup, and social proof
-- **Feature highlights** — Asymmetric grid (1 large + 2 stacked cards) showcasing Smart Automation, Collaboration, and Analytics
-- **Testimonials** — Three customer cards with avatar, quote, name, and company
-- **CTA** — Full-width conversion section with free trial prompt
-- **Footer** — Newsletter signup (via Netlify Forms), link columns, social links
+- **Hero** – Titre accrocheur, badges (RWS Group, Expertise Inde), blobs lumineux, mockup interactif du tableau de bord, preuve sociale (15+ organisations).
+- **Services** – 5 cartes présentant : traduction & annotation IA (RWS Group), solutions digitales & e‑commerce, interprétation humanitaire & militaire, lexicographie (dictionnaire tadaksahak), expertise Inde.
+- **Réalisations clés** – Achievements interactifs (liens vers dictionnaire, Niger Laptops, missions Takuba, etc.).
+- **Partenaires** – Logos textuels des organisations partenaires (OIM, UNHCR, Barkhane, etc.).
+- **Appel à l’action** – Devis combiné, téléchargement de plaquette.
+- **Footer** – Newsletter (Netlify Forms), liens vers services, ressources, mentions légales.
 
-## Tech stack
+## Stack technique
 
-| Tool | Purpose |
-|------|---------|
-| TanStack Start | React SSR framework |
-| Tailwind CSS v4 | Utility-first styling |
-| Lucide React | Icons |
-| Netlify Forms | Newsletter signup (serverless form handling) |
-| Google Fonts (Syne + DM Sans) | Typography |
+| Outil | Rôle |
+|-------|------|
+| React 18 | Bibliothèque UI |
+| Vite 5 | Build tool & dev server |
+| Tailwind CSS 3 + PostCSS | Styles utilitaires |
+| Lucide React | Icônes |
+| Netlify Forms | Inscription newsletter (formulaire statique) |
+| Google Fonts (Inter) | Typographie |
+| TypeScript 5 | Typage strict |
 
-## Run locally
+## Architecture
+
+- **Single‑page** : tout le contenu est dans `src/App.tsx` (pas de routage).
+- **Données** : services et réalisations dans `src/data/services.ts` avec mapping d’icônes.
+- **Styles** : `src/styles.css` contient les variables CSS, animations et classes de découpe.
+- **Formulaires** : `public/forms.html` est un squelette statique pour Netlify Forms.
+
+## Exécution locale
 
 ```bash
 npm install
 npm run dev
-```
-
-The dev server starts at `http://localhost:3000`. Note: Netlify Forms submissions require a live Netlify deploy to process — they won't fire in local dev.
-
-## Deploy
-
-Push to your connected Netlify site. The build command is `npm run build`.
