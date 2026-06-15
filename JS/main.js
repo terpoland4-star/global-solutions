@@ -28,14 +28,13 @@ class AppRoot extends HTMLElement {
       <app-contact-form></app-contact-form>
       <app-footer></app-footer>
     `;
-    // Après montage, initialiser les services globaux
     Promise.all([
-      initI18n(),           // charge les traductions et applique la langue
-      initTheme(),          // restaure le thème utilisateur
-      initSearch(),         // active Ctrl+K
-      initIcons()           // Lucide
+      initI18n(),
+      initTheme(),
+      initSearch(),
+      initIcons()
     ]).then(() => {
-      hideLoader();         // disparition du loader
+      hideLoader();
     });
   }
 }
