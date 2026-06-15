@@ -1,31 +1,431 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HAM Global Words – Solutions linguistiques & digitales</title>
-    <meta 
-      name="description" 
-      content="Prestataire linguistique multilingue & humanitaire : traduction, interprétation (OIM, UNHCR, Takuba), annotation IA (RWS Group), création de sites web et applications. Dictionnaire tadaksahak, plateforme e-commerce Niger Laptops." 
-    />
-    <meta 
-      name="keywords" 
-      content="traduction, interprétation, annotation IA, RWS Group, OIM, UNHCR, Takuba, dictionnaire tadaksahak, Niger Laptops, sites web, applications, full-stack, langues africaines, songhaï, tamasheq, tadaksahak, expertise Inde" 
-    />
-    <meta name="author" content="Hamadine AG Moctar" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://hamglobalwords.com" />
-    <meta property="og:title" content="HAM Global Words – Langues, cultures, technologies : l’expertise globale" />
-    <meta property="og:description" content="Double compétence linguistique & full-stack. Services de traduction, interprétation, annotation IA et développement sur mesure." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://hamglobalwords.com" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- Polices Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
-  </head>
-  <body class="grain">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAM Global Words – Solutions linguistiques & digitales</title>
+  <meta name="description" content="Prestataire linguistique multilingue & humanitaire : traduction, interprétation (OIM, UNHCR, Takuba), annotation IA (RWS Group), création de sites web et applications. Dictionnaire tadaksahak, plateforme e-commerce Niger Laptops.">
+  <meta name="keywords" content="traduction, interprétation, annotation IA, RWS Group, OIM, UNHCR, Takuba, dictionnaire tadaksahak, Niger Laptops, sites web, applications, full-stack">
+  <meta name="author" content="Hamadine AG Moctar">
+  <link rel="canonical" href="https://hamglobalwords.com">
+  <meta property="og:title" content="HAM Global Words – Langues, cultures, technologies : l’expertise globale">
+  <meta property="og:description" content="Double compétence linguistique & full-stack. Services de traduction, interprétation, annotation IA et développement sur mesure.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366F1'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ---------- BASE & VARIABLES ---------- */
+    :root {
+      --navy: #0A0F1E;
+      --navy-mid: #111827;
+      --navy-card: #161D2F;
+      --indigo: #6366F1;
+      --indigo-light: #818CF8;
+      --indigo-glow: rgba(99, 102, 241, 0.35);
+      --cream: #FAFAF7;
+      --cream-mid: #F1F0EB;
+      --text-muted: #94A3B8;
+      --border-subtle: rgba(99, 102, 241, 0.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-display { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+    .grain::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.3;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    .glow-border { box-shadow: 0 0 0 1px var(--border-subtle), 0 0 40px var(--indigo-glow), 0 0 80px rgba(99,102,241,0.12), inset 0 0 40px rgba(99,102,241,0.05); }
+    .glow-text { text-shadow: 0 0 60px rgba(99,102,241,0.5); }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: blobFloat 12s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes blobFloat {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33% { transform: translate(30px,-20px) scale(1.05); }
+      66% { transform: translate(-20px,10px) scale(0.97); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up-delay-1 { animation: fadeUp 0.7s 0.1s ease both; }
+    .animate-fade-up-delay-2 { animation: fadeUp 0.7s 0.2s ease both; }
+    .animate-fade-up-delay-3 { animation: fadeUp 0.7s 0.35s ease both; }
+    .animate-fade-up-delay-4 { animation: fadeUp 0.7s 0.5s ease both; }
+    .clip-angle-bottom {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 80px), 0 100%);
+      padding-bottom: 100px;
+    }
+    .clip-angle-top {
+      clip-path: polygon(0 80px, 100% 0, 100% 100%, 0 100%);
+      padding-top: 100px;
+      margin-top: -40px;
+    }
+    .clip-angle-both {
+      clip-path: polygon(0 80px, 100% 0, 100% calc(100% - 80px), 0 100%);
+      padding-top: 120px;
+      padding-bottom: 120px;
+      margin-top: -40px;
+    }
+    .btn-primary {
+      background: var(--indigo);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: #7578F3;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(99,102,241,0.4);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      padding: 13px 28px;
+      border-radius: 9999px;
+      font-weight: 500;
+      border: 1px solid rgba(250,250,247,0.2);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(250,250,247,0.5);
+      background: rgba(250,250,247,0.05);
+    }
+    .nav-blur {
+      backdrop-filter: blur(16px);
+      background: rgba(10,15,30,0.75);
+      border-bottom: 1px solid rgba(99,102,241,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid #E5E7EB;
+      transition: 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1); }
+    .achievement-card {
+      background: #161D2F;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: transform 0.3s;
+      border: 1px solid rgba(99,102,241,0.2);
+    }
+    .achievement-card:hover { transform: scale(1.02); }
+    .newsletter-input {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 9999px;
+      padding: 14px 20px;
+      color: white;
+      width: 100%;
+      outline: none;
+    }
+    .newsletter-input:focus {
+      border-color: var(--indigo-light);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+    }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.5rem; }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; }
+    @media (max-width: 768px) {
+      .desktop-nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .clip-angle-bottom, .clip-angle-top, .clip-angle-both {
+        clip-path: none;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        margin-top: 0;
+      }
+    }
+    @media (min-width: 769px) {
+      .desktop-nav { display: flex; }
+      .mobile-menu-btn { display: none; }
+    }
+  </style>
+</head>
+<body class="grain">
+  <app-root></app-root>
+
+  <script type="module">
+    // -------- Web Components for each section (modular, best practices) --------
+    // Helper for icons (after DOM rendering)
+    const initIcons = () => {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    };
+
+    // 1. Navbar Component
+    class Navbar extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <nav class="nav-blur">
+            <div class="container flex-between" style="padding: 1rem 0;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="w-8 h-8 rounded-lg" style="background: var(--indigo); display: flex; align-items: center; justify-content: center;"><i data-lucide="globe" size="16" color="white"></i></div>
+                <span class="font-display font-bold text-lg" style="color: var(--cream);">HAM Global Words</span>
+              </div>
+              <div class="desktop-nav" style="display: flex; align-items: center; gap: 2rem;">
+                <a href="#" style="color: var(--text-muted); font-size: 0.875rem;">Services</a>
+                <a href="#" style="color: var(--text-muted); font-size: 0.875rem;">Réalisations</a>
+                <a href="#" style="color: var(--text-muted); font-size: 0.875rem;">Partenaires</a>
+                <a href="#" style="color: var(--text-muted); font-size: 0.875rem;">Blog</a>
+                <a href="#" style="color: var(--text-muted); font-size: 0.875rem;">Contact</a>
+                <button class="btn-primary" style="padding: 10px 20px;">Demander un devis</button>
+              </div>
+              <button class="mobile-menu-btn" style="background: none; border: none; color: var(--cream); cursor: pointer;"><i data-lucide="menu" size="22"></i></button>
+            </div>
+            <div class="mobile-menu container" style="display: none; flex-direction: column; gap: 1rem; padding-bottom: 1rem;">
+              <a href="#" style="color: var(--text-muted);">Services</a>
+              <a href="#" style="color: var(--text-muted);">Réalisations</a>
+              <a href="#" style="color: var(--text-muted);">Partenaires</a>
+              <a href="#" style="color: var(--text-muted);">Blog</a>
+              <a href="#" style="color: var(--text-muted);">Contact</a>
+              <button class="btn-primary">Demander un devis</button>
+            </div>
+          </nav>
+        `;
+        const btn = this.querySelector('.mobile-menu-btn');
+        const menu = this.querySelector('.mobile-menu');
+        if (btn && menu) btn.addEventListener('click', () => { menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex'; });
+        initIcons();
+      }
+    }
+    customElements.define('app-navbar', Navbar);
+
+    // 2. Hero Component
+    class Hero extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <section class="clip-angle-bottom relative overflow-hidden" style="background: var(--navy); padding-top: 100px; padding-bottom: 140px;">
+            <div class="blob" style="width: 600px; height: 600px; background: radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%); top: -100px; right: -100px;"></div>
+            <div class="blob" style="width: 400px; height: 400px; background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%); bottom: 0; left: -80px;"></div>
+            <div class="container relative">
+              <div class="animate-fade-up-delay-1 flex flex-wrap gap-2 mb-8">
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(99,102,241,0.12); border:1px solid rgba(99,102,241,0.3); color:var(--indigo-light);"><span class="w-1.5 h-1.5 rounded-full" style="background:#34D399; box-shadow:0 0 6px #34D399;"></span> Certifié RWS Group</div>
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style="background: rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.3); color:#C4B5FD;"><i data-lucide="globe" size="12"></i> Expertise Inde</div>
+              </div>
+              <div class="animate-fade-up-delay-2"><h1 class="font-display leading-none tracking-tight mb-6" style="font-size: clamp(52px,8vw,96px); color: var(--cream); max-width: 900px;">Langues, cultures, technologies :<br><span class="glow-text" style="color: var(--indigo-light);">l’expertise globale.</span></h1></div>
+              <div class="animate-fade-up-delay-3"><p class="text-lg leading-relaxed mb-10" style="color: var(--text-muted); max-width: 680px;"><strong class="text-cream">HAM Global Words</strong> – prestataire linguistique certifié (RWS Group, OIM, UNHCR, Task Force Takuba). Traduction, interprétation, annotation IA, création de plateformes digitales (e‑commerce, dictionnaire tadaksahak). Double compétence linguistique & full‑stack, du Sahel au monde.</p></div>
+              <div class="animate-fade-up-delay-4 flex flex-wrap gap-4 items-center mb-16"><button class="btn-primary">Discuter de votre projet <i data-lucide="arrow-right" size="16"></i></button><a href="#" class="btn-ghost"><i data-lucide="book-open" size="14"></i> Voir le dictionnaire tadaksahak</a></div>
+              <div class="flex items-center gap-4 mb-16 text-sm" style="color: var(--text-muted);"><div class="flex -space-x-2"><div class="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold" style="background:#6366F1; border-color:var(--navy); color:white;">H</div><div class="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold" style="background:#8B5CF6; border-color:var(--navy); color:white;">A</div><div class="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold" style="background:#EC4899; border-color:var(--navy); color:white;">M</div><div class="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold" style="background:#F59E0B; border-color:var(--navy); color:white;">A</div><div class="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold" style="background:#10B981; border-color:var(--navy); color:white;">G</div></div><span>Accompagnant <strong style="color: var(--cream);">+15 organisations internationales</strong> (ONU, forces armées, entreprises tech)</span></div>
+              <!-- Mockup -->
+              <div class="glow-border rounded-2xl overflow-hidden w-full" style="background: var(--navy-card); max-width: 840px; margin: 0 auto;">
+                <div class="flex items-center gap-2 px-5 py-3 border-b" style="border-color: rgba(99,102,241,0.12); background: rgba(99,102,241,0.05);"><div class="flex gap-1.5"><div style="background:#FF5F57" class="w-3 h-3 rounded-full"></div><div style="background:#FEBC2E" class="w-3 h-3 rounded-full"></div><div style="background:#28C840" class="w-3 h-3 rounded-full"></div></div><div class="flex-1 mx-4 h-6 rounded-md flex items-center px-3 text-xs" style="background: rgba(255,255,255,0.05); color: var(--text-muted);">studio.hamglobalwords.com/ecosystem</div></div>
+                <div class="flex flex-col sm:flex-row" style="min-height: 360px;">
+                  <div class="flex-1 p-5 border-r" style="border-color: rgba(99,102,241,0.1);"><div class="text-xs font-semibold mb-3" style="color: var(--indigo-light);">RÉALISATIONS CLÉS</div><div class="space-y-3"><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><i data-lucide="book-open" size="12" class="text-indigo-300"></i></div><span class="text-xs" style="color: var(--cream);">Dictionnaire tadaksahak (premier)</span><span class="text-xs ml-auto text-green-400">publié</span></div><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><i data-lucide="shopping-cart" size="12" class="text-indigo-300"></i></div><span class="text-xs" style="color: var(--cream);">Plateforme e‑commerce Niger Laptops</span><span class="text-xs ml-auto text-green-400">en ligne</span></div><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><i data-lucide="shield" size="12" class="text-indigo-300"></i></div><span class="text-xs" style="color: var(--cream);">Interprétation Takuba / Barkhane</span><span class="text-xs ml-auto text-yellow-400">classifié</span></div></div><div class="text-xs font-semibold mt-6 mb-3" style="color: var(--indigo-light);">PARTENARIATS</div><div class="space-y-3"><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center"><i data-lucide="file-text" size="12" class="text-purple-300"></i></div><span class="text-xs" style="color: var(--cream);">RWS Group (annotation IA)</span><span class="text-xs ml-auto text-blue-400">certifié</span></div><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center"><i data-lucide="users" size="12" class="text-purple-300"></i></div><span class="text-xs" style="color: var(--cream);">OIM / UNHCR / IOM</span><span class="text-xs ml-auto text-blue-400">référence</span></div></div></div>
+                  <div class="flex-1 p-5"><div class="grid grid-cols-2 gap-3 mb-4"><div class="rounded-lg p-2 text-center" style="background: rgba(255,255,255,0.03);"><div class="text-lg font-bold" style="color: var(--indigo-light);">15+</div><div class="text-xs text-muted">langues couvertes</div></div><div class="rounded-lg p-2 text-center" style="background: rgba(255,255,255,0.03);"><div class="text-lg font-bold" style="color: var(--indigo-light);">7</div><div class="text-xs text-muted">projets majeurs livrés</div></div></div><div class="rounded-lg p-3" style="background: rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.2);"><div class="flex items-center gap-2 text-xs mb-2"><i data-lucide="cloud-cog" size="14" class="text-indigo-300"></i><span class="font-medium">Expertise Inde · RWS Group · ONU</span></div><div class="text-xs text-muted">Partenaires de confiance pour des projets à fort impact.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+        initIcons();
+      }
+    }
+    customElements.define('app-hero', Hero);
+
+    // 3. Services Component (5 cards)
+    class Services extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <section class="clip-angle-top" style="background: var(--cream); color: #0A0F1E; padding-bottom: 100px;">
+            <div class="container">
+              <div class="text-center mb-16"><p class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--indigo);">Savoir-faire</p><h2 class="font-display leading-tight" style="font-size: clamp(32px,4.5vw,56px);">Des prestations uniques<br><span style="color: var(--indigo);">au carrefour des langues et du numérique</span></h2></div>
+              <div class="grid-3">
+                <div class="feature-card"><div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(99,102,241,0.1);"><i data-lucide="file-text" size="24" style="color: var(--indigo);"></i></div><h3 class="text-xl font-bold mb-2">Traduction & annotation IA (RWS Group)</h3><p class="text-sm text-gray-600 mb-3">Prestataire certifié – corpus, transcription, NLP</p><p class="text-sm text-gray-500">Préparation de données linguistiques pour modèles d’IA, traduction technique, révision. Partenaire RWS Group.</p><div class="mt-4 flex flex-wrap gap-2"><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">Annotation sémantique</span><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">Transcription audio/vidéo</span></div></div>
+                <div class="feature-card"><div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(99,102,241,0.1);"><i data-lucide="code-2" size="24" style="color: var(--indigo);"></i></div><h3 class="text-xl font-bold mb-2">Solutions digitales & e‑commerce</h3><p class="text-sm text-gray-600 mb-3">Sites web, apps, plateformes sur mesure</p><p class="text-sm text-gray-500">Création de sites vitrines, e‑commerce (ex: Niger Laptops), dashboards, applications mobiles (Flutter, React).</p><div class="mt-4 flex flex-wrap gap-2"><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">React/Next.js</span><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">Flutter</span></div></div>
+                <div class="feature-card"><div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(99,102,241,0.1);"><i data-lucide="mic" size="24" style="color: var(--indigo);"></i></div><h3 class="text-xl font-bold mb-2">Interprétation humanitaire & militaire</h3><p class="text-sm text-gray-600 mb-3">OIM, UNHCR, Barkhane, Takuba</p><p class="text-sm text-gray-500">Interprète de liaison, consécutive et simultanée pour missions sensibles. Expérience terrain prouvée.</p><div class="mt-4 flex flex-wrap gap-2"><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">Contexte sécurisé</span><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">Langues songhaï, tamasheq</span></div></div>
+                <div class="feature-card"><div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(99,102,241,0.1);"><i data-lucide="book-open" size="24" style="color: var(--indigo);"></i></div><h3 class="text-xl font-bold mb-2">Lexicographie & langues rares</h3><p class="text-sm text-gray-600 mb-3">Premier dictionnaire tadaksahak</p><p class="text-sm text-gray-500">Auteur du premier dictionnaire bilingue français–tadaksahak. Travail de terrain et normalisation.</p><div class="mt-4 flex flex-wrap gap-2"><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">Ouvrage de référence</span><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">3000+ entrées</span></div></div>
+                <div class="feature-card"><div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(99,102,241,0.1);"><i data-lucide="globe" size="24" style="color: var(--indigo);"></i></div><h3 class="text-xl font-bold mb-2">Expertise Inde – solutions linguistiques</h3><p class="text-sm text-gray-600 mb-3">Partenariat avec des spécialistes indiens</p><p class="text-sm text-gray-500">Collaboration pour des projets multilingues (sanskrit, hindi, ourdou, sous‑titrage, localisation).</p><div class="mt-4 flex flex-wrap gap-2"><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">Sanskrit, hindi, ourdou</span><span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700">Transcription</span></div></div>
+              </div>
+            </div>
+          </section>
+        `;
+        initIcons();
+      }
+    }
+    customElements.define('app-services', Services);
+
+    // 4. Achievements Component (5 cards with links)
+    class Achievements extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <section style="background: var(--navy-mid); padding: 80px 0;">
+            <div class="container">
+              <div class="text-center mb-12"><p class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--indigo-light);">Preuves sociales</p><h2 class="font-display text-3xl lg:text-4xl text-cream">Réalisations concrètes</h2></div>
+              <div class="grid-3">
+                <div class="achievement-card"><a href="#" target="_blank" style="text-decoration: none; color: inherit; display: block;"><div class="w-14 h-14 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4"><i data-lucide="book-open" size="28" class="text-indigo-300"></i></div><h3 class="text-lg font-bold text-cream mb-2">Premier dictionnaire tadaksahak</h3><p class="text-sm text-muted">Ouvrage lexicographique de référence pour la langue tadaksahak.</p><i data-lucide="external-link" size="14" class="text-indigo-400 mt-3 mx-auto"></i></a></div>
+                <div class="achievement-card"><div class="w-14 h-14 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4"><i data-lucide="users" size="28" class="text-indigo-300"></i></div><h3 class="text-lg font-bold text-cream mb-2">Interprète OIM & UNHCR</h3><p class="text-sm text-muted">Missions de protection des réfugiés et accompagnement terrain (Sahel).</p></div>
+                <div class="achievement-card"><div class="w-14 h-14 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4"><i data-lucide="shield" size="28" class="text-indigo-300"></i></div><h3 class="text-lg font-bold text-cream mb-2">Appui à la Task Force Takuba</h3><p class="text-sm text-muted">Interprétation opérationnelle pour les forces spéciales européennes.</p></div>
+                <div class="achievement-card"><a href="https://www.niger-laptops.com" target="_blank" style="text-decoration: none; color: inherit; display: block;"><div class="w-14 h-14 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4"><i data-lucide="shopping-cart" size="28" class="text-indigo-300"></i></div><h3 class="text-lg font-bold text-cream mb-2">Plateforme Niger Laptops</h3><p class="text-sm text-muted">Site e‑commerce complet lancé en production.</p><i data-lucide="external-link" size="14" class="text-indigo-400 mt-3 mx-auto"></i></a></div>
+                <div class="achievement-card"><div class="w-14 h-14 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4"><i data-lucide="sparkles" size="28" class="text-indigo-300"></i></div><h3 class="text-lg font-bold text-cream mb-2">Prestataire RWS Group</h3><p class="text-sm text-muted">Annotation IA et transcription pour modèles NLP (langues peu dotées).</p></div>
+              </div>
+            </div>
+          </section>
+        `;
+        initIcons();
+      }
+    }
+    customElements.define('app-achievements', Achievements);
+
+    // 5. Partners Component
+    class Partners extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <section style="background: var(--cream-mid); padding: 70px 0;">
+            <div class="container text-center">
+              <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-6">Ils nous font confiance</p>
+              <div class="flex flex-wrap justify-center gap-12 items-center opacity-80">
+                <span class="text-2xl font-display font-bold text-gray-500">RWS Group</span>
+                <span class="text-2xl font-display font-bold text-gray-500">OIM · IOM</span>
+                <span class="text-2xl font-display font-bold text-gray-500">UNHCR</span>
+                <span class="text-2xl font-display font-bold text-gray-500">Barkhane</span>
+                <span class="text-2xl font-display font-bold text-gray-500">Task Force Takuba</span>
+                <span class="text-2xl font-display font-bold text-gray-500">Expertise Inde</span>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+    }
+    customElements.define('app-partners', Partners);
+
+    // 6. CTA Component
+    class Cta extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <section class="clip-angle-both relative overflow-hidden" style="background: var(--navy); text-align: center;">
+            <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.2) 0%, transparent 65%);"></div>
+            <div class="container relative" style="max-width: 768px; margin: 0 auto;">
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8" style="background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3); color: var(--indigo-light);"><i data-lucide="check" size="14"></i> Disponible pour missions urgentes</div>
+              <h2 class="font-display leading-tight mb-6" style="font-size: clamp(36px,5.5vw,64px); color: var(--cream);">Un projet ? Une mission humanitaire ?<br>Une plateforme à développer ?</h2>
+              <p class="text-lg mb-10" style="color: var(--text-muted); max-width: 580px; margin: 0 auto;">Que vous soyez une ONG, une entreprise tech ou une institution, nous conjuguons langues et technologie pour un impact maximal.</p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center"><button class="btn-primary">Demander un devis combiné <i data-lucide="arrow-right" size="18"></i></button><button class="btn-ghost">Télécharger la plaquette</button></div>
+              <p class="mt-6 text-sm" style="color: rgba(148,163,184,0.6);">Réponse sous 24h · Devis gratuit · Confidentialité absolue</p>
+            </div>
+          </section>
+        `;
+        initIcons();
+      }
+    }
+    customElements.define('app-cta', Cta);
+
+    // 7. Footer Component (with Newsletter)
+    class Footer extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <footer style="background: #070B15; border-top: 1px solid rgba(99,102,241,0.1); padding-top: 80px; padding-bottom: 48px;">
+            <div class="container">
+              <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-16">
+                <div class="lg:col-span-2"><div class="flex items-center gap-2 mb-4"><div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: var(--indigo);"><i data-lucide="globe" size="16" color="white"></i></div><span class="font-display font-bold text-lg" style="color: var(--cream);">HAM Global Words</span></div><p class="text-sm leading-relaxed mb-8" style="color: var(--text-muted); max-width: 300px;">Prestataire linguistique & digital. Dictionnaire tadaksahak, missions OIM/UNHCR/Takuba, plateformes e‑commerce, annotation IA.</p><div><p class="text-sm font-semibold mb-3" style="color: var(--cream);">Newsletter</p><p class="text-xs mb-4" style="color: var(--text-muted);">Actualités, appels d’offres & retours d’expérience.</p><app-newsletter></app-newsletter></div></div>
+                <div><p class="text-xs font-bold uppercase mb-5" style="color: var(--text-muted);">Services</p><ul class="space-y-3"><li><a href="#" class="text-sm" style="color: var(--text-muted);">Traduction & annotation</a></li><li><a href="#" class="text-sm" style="color: var(--text-muted);">Interprétation</a></li><li><a href="#" class="text-sm" style="color: var(--text-muted);">Solutions digitales</a></li><li><a href="#" class="text-sm" style="color: var(--text-muted);">Expertise Inde</a></li></ul></div>
+                <div><p class="text-xs font-bold uppercase mb-5" style="color: var(--text-muted);">Ressources</p><ul class="space-y-3"><li><a href="#" class="text-sm" style="color: var(--text-muted);">Dictionnaire tadaksahak</a></li><li><a href="#" class="text-sm" style="color: var(--text-muted);">Études de cas</a></li><li><a href="#" class="text-sm" style="color: var(--text-muted);">Blog</a></li><li><a href="#" class="text-sm" style="color: var(--text-muted);">Partenaires</a></li></ul></div>
+                <div><p class="text-xs font-bold uppercase mb-5" style="color: var(--text-muted);">Légal</p><ul class="space-y-3"><li><a href="#" class="text-sm" style="color: var(--text-muted);">Mentions légales</a></li><li><a href="#" class="text-sm" style="color: var(--text-muted);">Confidentialité</a></li><li><a href="#" class="text-sm" style="color: var(--text-muted);">CGU</a></li><li><a href="#" class="text-sm" style="color: var(--text-muted);">Accessibilité</a></li></ul></div>
+              </div>
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8" style="border-top: 1px solid rgba(255,255,255,0.05);"><p class="text-xs" style="color: rgba(148,163,184,0.5);">© 2025 HAM Global Words — Hamadine AG Moctar. Tous droits réservés.</p><div class="flex gap-6"><a href="#" class="text-xs" style="color: rgba(148,163,184,0.5);">LinkedIn</a><a href="#" class="text-xs" style="color: rgba(148,163,184,0.5);">GitHub</a><a href="#" class="text-xs" style="color: rgba(148,163,184,0.5);">Twitter</a></div></div>
+            </div>
+          </footer>
+        `;
+        initIcons();
+      }
+    }
+    customElements.define('app-footer', Footer);
+
+    // 8. Newsletter Form Component (standalone)
+    class NewsletterForm extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+            <input type="hidden" name="form-name" value="newsletter">
+            <input type="hidden" name="bot-field">
+            <input type="email" name="email" placeholder="votre@email.com" required class="newsletter-input flex-1">
+            <button type="submit" class="btn-primary whitespace-nowrap">S'abonner</button>
+            <div class="form-status text-sm"></div>
+          </form>
+        `;
+        const form = this.querySelector('#newsletter-form');
+        const statusDiv = this.querySelector('.form-status');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = form.querySelector('input[name="email"]').value;
+          const btn = form.querySelector('button');
+          btn.disabled = true;
+          btn.innerText = 'Inscription…';
+          try {
+            const data = new URLSearchParams();
+            data.append('form-name', 'newsletter');
+            data.append('email', email);
+            data.append('bot-field', '');
+            const res = await fetch('/forms.html', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: data.toString()
+            });
+            if (res.ok) {
+              statusDiv.innerHTML = '<span style="color:#86EFAC">✓ Merci — nous vous contacterons très vite.</span>';
+              form.querySelector('input[name="email"]').value = '';
+            } else throw new Error();
+          } catch {
+            statusDiv.innerHTML = '<span style="color:#FCA5A5">Une erreur s’est produite — veuillez réessayer.</span>';
+          } finally {
+            btn.disabled = false;
+            btn.innerText = 'S’abonner';
+            setTimeout(() => statusDiv.innerHTML = '', 5000);
+          }
+        });
+      }
+    }
+    customElements.define('app-newsletter', NewsletterForm);
+
+    // 9. Root component that assembles everything
+    class AppRoot extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <app-navbar></app-navbar>
+          <app-hero></app-hero>
+          <app-services></app-services>
+          <app-achievements></app-achievements>
+          <app-partners></app-partners>
+          <app-cta></app-cta>
+          <app-footer></app-footer>
+        `;
+        // Ensure icons are rendered after all children are mounted
+        setTimeout(() => initIcons(), 150);
+      }
+    }
+    customElements.define('app-root', AppRoot);
+  </script>
+</body>
 </html>
